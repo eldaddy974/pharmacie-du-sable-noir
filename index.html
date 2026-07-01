@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pharmacie du Sable Noir</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Tenor+Sans&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --sable: #efe0c6;
+      --sable-light: #f7eddc;
+      --bleu: #0b2f63;
+      --bleu-dark: #061f43;
+      --ligne: rgba(11,47,99,.22);
+      --ombre: rgba(11,47,99,.14);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,.55), transparent 34rem),
+        linear-gradient(180deg, var(--sable-light), var(--sable));
+      color: var(--bleu);
+      font-family: "Montserrat", Arial, sans-serif;
+    }
+
+    main {
+      width: min(920px, 100%);
+      margin: 0 auto;
+      padding: 42px 20px 26px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    h1, h2 {
+      font-family: "Tenor Sans", serif;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: .035em;
+      line-height: 1.12;
+      margin: 0;
+      color: var(--bleu-dark);
+    }
+
+    h1, h2 { font-size: clamp(1.75rem, 5.3vw, 3rem); }
+
+    .underline {
+      width: 84px;
+      height: 3px;
+      background: var(--bleu);
+      border-radius: 99px;
+      margin: 24px auto;
+    }
+
+    .intro {
+      font-size: clamp(1.05rem, 3.2vw, 1.45rem);
+      line-height: 1.55;
+      margin: 0 auto;
+      max-width: 680px;
+      font-weight: 500;
+    }
+
+    .card {
+      border: 2px solid var(--ligne);
+      border-radius: 28px;
+      background: rgba(255,255,255,.22);
+      box-shadow: 0 18px 45px var(--ombre);
+      padding: 26px;
+      margin: 30px 0;
+    }
+
+    .email-card {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .icon-circle {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(11,47,99,.06);
+    }
+
+    .icon-circle svg {
+      width: 112px;
+      height: 112px;
+      stroke: var(--bleu);
+    }
+
+    .label {
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-weight: 600;
+      font-size: .95rem;
+      margin-bottom: 14px;
+    }
+
+    .email-box {
+      border: 2px solid var(--bleu);
+      border-radius: 18px;
+      padding: 18px 20px;
+      font-size: clamp(1.08rem, 4.2vw, 1.9rem);
+      font-weight: 500;
+      overflow-wrap: anywhere;
+      background: rgba(255,255,255,.24);
+    }
+
+    button, .social-button {
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 58px;
+      border-radius: 999px;
+      padding: 16px 24px;
+      font: 700 1rem "Montserrat", Arial, sans-serif;
+      letter-spacing: .02em;
+      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+      width: 100%;
+    }
+
+    button:active, .social-button:active { transform: scale(.985); }
+
+    .copy-button, .social-button.primary {
+      background: linear-gradient(135deg, var(--bleu-dark), var(--bleu));
+      color: #fff;
+      box-shadow: 0 12px 24px rgba(11,47,99,.22);
+      margin-top: 18px;
+    }
+
+    .social-button.secondary {
+      border: 2px solid var(--bleu);
+      color: var(--bleu);
+      background: rgba(255,255,255,.35);
+      margin-top: 12px;
+    }
+
+    .copied {
+      display: none;
+      align-items: center;
+      gap: 16px;
+      width: min(620px, 100%);
+      margin: 20px auto 0;
+      border: 1px solid var(--ligne);
+      border-radius: 18px;
+      padding: 16px 18px;
+      background: rgba(255,255,255,.28);
+    }
+
+    .copied.show { display: flex; }
+
+    .check {
+      flex: 0 0 auto;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--bleu);
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.4rem;
+    }
+
+    .copied strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: 3px;
+    }
+
+    hr {
+      border: 0;
+      border-top: 2px solid var(--ligne);
+      margin: 36px 0;
+    }
+
+    .social-intro {
+      text-align: center;
+      max-width: 820px;
+      margin: 0 auto 24px;
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .social-card {
+      text-align: center;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .social-icon {
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+      margin: 0 auto 14px;
+      display: grid;
+      place-items: center;
+      background: var(--bleu);
+      color: #fff;
+      font-size: 2.2rem;
+      font-weight: 800;
+    }
+
+    .social-title {
+      text-transform: uppercase;
+      font-size: 1.45rem;
+      letter-spacing: .05em;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .mini-line {
+      width: 80%;
+      height: 1px;
+      margin: 0 auto 14px;
+      background: var(--ligne);
+    }
+
+    .confidential {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      font-size: .98rem;
+      line-height: 1.45;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 2px solid var(--ligne);
+    }
+
+    .lock {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(11,47,99,.08);
+    }
+
+    .footer-logo {
+      margin: 26px auto 0;
+      text-align: center;
+    }
+
+    .footer-logo img {
+      width: min(720px, 100%);
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 0;
+    }
+
+    @media (max-width: 760px) {
+      main { padding: 30px 16px 18px; }
+      .email-card { grid-template-columns: 1fr; text-align: center; gap: 18px; }
+      .icon-circle { margin: 0 auto; width: 140px; height: 140px; }
+      .icon-circle svg { width: 92px; height: 92px; }
+      .social-grid { grid-template-columns: 1fr; gap: 16px; }
+      .card { padding: 20px; border-radius: 22px; }
+      .social-card { min-height: auto; }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <section class="hero">
+      <h1>Envoyer une ordonnance<br>et/ou une mutuelle à jour</h1>
+      <div class="underline"></div>
+      <p class="intro">Transférez-nous vos ordonnances et votre carte de mutuelle par e-mail.</p>
+    </section>
+
+    <section class="card email-card">
+      <div class="icon-circle" aria-hidden="true">
+        <svg viewBox="0 0 96 96" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 38l36 28 36-28"/>
+          <path d="M18 32h60a6 6 0 016 6v38a6 6 0 01-6 6H18a6 6 0 01-6-6V38a6 6 0 016-6z"/>
+          <path d="M35 18h20l14 14v30"/>
+          <path d="M35 18v44"/>
+          <path d="M55 18v14h14"/>
+          <path d="M45 31h14"/>
+          <path d="M52 24v14"/>
+          <path d="M42 46h20"/>
+          <path d="M42 55h20"/>
+        </svg>
+      </div>
+
+      <div>
+        <div class="label">Adresse e-mail de la pharmacie</div>
+        <div class="email-box" id="email">pharmaciedusablenoir@gmail.com</div>
+        <button class="copy-button" id="copyBtn" type="button" aria-label="Copier l'adresse e-mail">
+          📋 Copier l’adresse e-mail
+        </button>
+      </div>
+    </section>
+
+    <div class="copied" id="copiedMsg" role="status" aria-live="polite">
+      <div class="check">✓</div>
+      <div>
+        <strong>Adresse copiée !</strong>
+        Vous pouvez maintenant la coller dans votre e-mail.
+      </div>
+    </div>
+
+    <hr>
+
+    <section class="social-intro">
+      <h2>Pour suivre nos actualités,<br>nos promotions et nos dates de garde,<br>suivez-nous sur les réseaux sociaux&nbsp;!</h2>
+    </section>
+
+    <section class="social-grid">
+      <article class="card social-card">
+        <div class="social-icon">f</div>
+        <div class="social-title">Facebook</div>
+        <div class="mini-line"></div>
+        <a class="social-button primary" href="https://www.facebook.com/pharmaciedusablenoir/" target="_blank" rel="noopener">
+          👍 J’aime
+        </a>
+        <a class="social-button secondary" href="https://www.facebook.com/pharmaciedusablenoir/" target="_blank" rel="noopener">
+          ♥ Suivre la page
+        </a>
+      </article>
+
+      <article class="card social-card">
+        <div class="social-icon">◎</div>
+        <div class="social-title">Instagram</div>
+        <div class="mini-line"></div>
+        <a class="social-button primary" href="https://www.instagram.com/pharmaciedusablenoir/" target="_blank" rel="noopener">
+          👤 Suivre le compte
+        </a>
+      </article>
+    </section>
+
+    <section class="confidential">
+      <div class="lock">🔒</div>
+      <div>Vos données sont confidentielles et utilisées uniquement pour le traitement de votre demande.</div>
+    </section>
+
+    <footer class="footer-logo">
+      <img src="logo-pharmacie-du-sable-noir.png" alt="Pharmacie du Sable Noir - L'Étang-Salé les Bains">
+    </footer>
+  </main>
+
+  <script>
+    const email = "pharmaciedusablenoir@gmail.com";
+    const copyBtn = document.getElementById("copyBtn");
+    const copiedMsg = document.getElementById("copiedMsg");
+
+    async function copyEmail() {
+      try {
+        await navigator.clipboard.writeText(email);
+      } catch (err) {
+        const temp = document.createElement("textarea");
+        temp.value = email;
+        temp.style.position = "fixed";
+        temp.style.opacity = "0";
+        document.body.appendChild(temp);
+        temp.focus();
+        temp.select();
+        document.execCommand("copy");
+        document.body.removeChild(temp);
+      }
+
+      copiedMsg.classList.add("show");
+      copyBtn.textContent = "✓ Adresse copiée";
+      setTimeout(() => {
+        copyBtn.textContent = "📋 Copier l’adresse e-mail";
+      }, 2500);
+    }
+
+    copyBtn.addEventListener("click", copyEmail);
+  </script>
+</body>
+</html>
